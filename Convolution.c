@@ -53,20 +53,21 @@ int main(int argc,char ** argv){
       fscanf(input_file,"%d",&num);
       sub[i*length1 + l] = num;
       fgetc(input_file);
+      printf("%d",num);
     }
   }
   int nownum = 0;
   for(int line = 0;line < width-width1 + 1;line++){
     for(int row = 0;row < length-length1 + 1;row++){
-      for(int subline = 0;subline < length1;subline++){
-        for(int subrow = 0;subrow < width1;subrow++){
+      for(int subline = 0;subline < width1;subline++){
+        for(int subrow = 0;subrow < length1;subrow++){
           nownum += sub[length1*subline + subrow] * image[(line + subline)*length + row + subrow];
+          printf("%d %d %d\n",sub[length1*subline + subrow],image[(line + subline)*length + row + subrow],nownum);
         }
       }
       fprintf(output_file,"%d",nownum);
-      if(row != width-width1){
-        fputs(" ",output_file);
-      }
+      fputs(" ",output_file);
+      
       nownum = 0;
     }
     fputs("\n",output_file);
